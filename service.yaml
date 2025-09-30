@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: guardian-nlp-service
+spec:
+  selector:
+    app: guardian-nlp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: NodePort

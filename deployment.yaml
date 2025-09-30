@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guardian-nlp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guardian-nlp
+  template:
+    metadata:
+      labels:
+        app: guardian-nlp
+    spec:
+      containers:
+      - name: guardian-nlp-api
+        image: guardian-nlp-api
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000

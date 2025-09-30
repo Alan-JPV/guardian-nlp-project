@@ -1,2 +1,10 @@
 /model.pkl
 /vectorizer.pkl
+# Ignore all json key files
+*.json
+
+# Ignore the data directory
+/data/
+
+*.json
+/data/

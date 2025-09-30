@@ -1,7 +1,4 @@
 [core]
-    remote = gdrive
-
-['remote "gdrive"']
-    url = gdrive://1AYFy0R7bc5Y1eG4z7F9DwUkerYAWGJ5g
-    gdrive_use_service_account = true
-    gdrive_service_account_json_file_path = gurdian-nlp-9a12a66ac0d3.json
+    remote = localremote
+['remote "localremote"']
+    url = D:\Project btech related alan\dvc-storage
