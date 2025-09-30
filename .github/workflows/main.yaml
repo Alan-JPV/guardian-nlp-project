@@ -1,34 +1,46 @@
-# Name of your workflow
-name: CI/CD Pipeline
+name: Build and Push Docker Images
 
-# Trigger the workflow on a push to the main branch
 on:
   push:
     branches: [ "main" ]
 
-# Define the jobs to run
 jobs:
-  build-and-push:
-    # Use the latest version of Ubuntu to run the job
+  build-backend:
     runs-on: ubuntu-latest
-
-    # Define the steps in the job
     steps:
-      # 1. Check out your repository's code
       - name: Check out repo
         uses: actions/checkout@v4
 
-      # 2. Log in to Docker Hub using your secrets
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 3. Build the Docker image and push it to Docker Hub
-      - name: Build and push Docker image
+      - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
           context: .
+          dockerfile: Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/guardian-nlp-api:latest
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          dockerfile: Dockerfile.ui
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/guardian-nlp-frontend:latest
