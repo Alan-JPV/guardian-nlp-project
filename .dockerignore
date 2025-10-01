@@ -1,0 +1,19 @@
+# Ignore Git and DVC history
+.git
+.dvc
+.gitignore
+.dvcignore
+
+# Ignore caches and virtual environments
+.dvc/cache
+__pycache__
+venv
+audiotox_env
+env_test
+
+# Ignore large data files (DVC should handle this)
+data/
+
+# Ignore temporary files from this project
+temp/
+check_path.py
